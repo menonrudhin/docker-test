@@ -1,0 +1,44 @@
+version: '2'
+
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+  zookeeper:
+    image: 'bitnami/zookeeper:latest'
+    networks:
+      - app-tier
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+      ALLOW_ANONYMOUS_LOGIN : yes
+    ports :
+      - 2181:2181
+  kafka:
+    image: 'bitnami/kafka:latest'
+    networks:
+      - app-tier
+    depends_on:
+      - zookeeper
+    ports:
+      - 9092:9092
+      - 29092:29092
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      ALLOW_PLAINTEXT_LISTENER : yes
+  mykafkaclient:
+    image: 'kafkaclient01'
+    networks:
+      - app-tier
+    environment:
+      SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092
+    ports:
+      - 8081:8081
+    depends_on:
+      - kafka
