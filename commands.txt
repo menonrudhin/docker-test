@@ -1,0 +1,10 @@
+rudhinmenon@Rudhins-MacBook-Air kafkaclient % docker exec broker \                                        
+kafka-topics --bootstrap-server broker:9092 \
+             --create \   
+             --topic topic1   
+Created topic topic1.
+rudhinmenon@Rudhins-MacBook-Air kafkaclient % docker exec broker \                                        
+kafka-topics --bootstrap-server broker:9092 \
+             --list topics
+quickstart
+topic1
