@@ -8,3 +8,10 @@ kafka-topics --bootstrap-server broker:9092 \
              --list topics
 quickstart
 topic1
+
+# to enter msgs manually, this will be displayed in kafkaclient logs
+docker exec --interactive --tty broker \
+kafka-console-producer --bootstrap-server broker:29092 --topic topic1
+>hello
+>hello:hello
+
