@@ -37,7 +37,7 @@ public class KafkaclientApplication {
 				.build();
 	}
 
-	@Bean
+	/*@Bean
 	KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>>
 	kafkaListenerContainerFactory() {
 		ConcurrentKafkaListenerContainerFactory<String, String> factory =
@@ -62,5 +62,5 @@ public class KafkaclientApplication {
 		props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 		// ...
 		return props;
-	}
+	}*/
 }

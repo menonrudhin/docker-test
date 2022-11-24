@@ -3,4 +3,4 @@ server:
 spring:
   kafka:
     consumer:
-      bootstrap-servers: broker:9092
+      bootstrap-servers: broker:29092
