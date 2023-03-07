@@ -29,5 +29,7 @@ services:
   kafkaclient:
     image: kafkaclient
     container_name: kafkaclient01
+    environment:
+     KAFKA_BROKER_ADDRESS: broker:29092
     depends_on:
       - broker
