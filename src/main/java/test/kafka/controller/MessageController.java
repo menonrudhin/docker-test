@@ -8,11 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MessageController {
 
-    @Autowired
-    private TextMessageRepository repository;
+
 
     @PostMapping("/sendMessage")
-    public void sendMessage(@RequestBody TextMessage text) {
-        repository.save(text);
+    public void sendMessage(@RequestBody String text) {
+
     }
 }

@@ -26,6 +26,11 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+  redisServer:
+    image: redis/redis-stack-server:latest
+    container_name: redis_stack_server
+    ports:
+      - "6379:6379"
   kafkaclient:
     image: kafkaclient
     container_name: kafkaclient01
@@ -33,3 +38,4 @@ services:
      KAFKA_BROKER_ADDRESS: broker:29092
     depends_on:
       - broker
+      - redisServer

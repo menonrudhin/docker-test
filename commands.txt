@@ -15,3 +15,5 @@ kafka-console-producer --bootstrap-server broker:29092 --topic topic1
 >hello
 >hello:hello
 
+# Start Redis
+docker run -d --name redis-stack -p 6379:6379 redis/redis-stack-server:latest

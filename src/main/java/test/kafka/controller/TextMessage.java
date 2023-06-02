@@ -1,15 +1,17 @@
 package test.kafka.controller;
 
+import org.springframework.data.redis.core.RedisHash;
 import org.w3c.dom.Text;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-@Entity(name="TEXT_MESSAGE")
-public class TextMessage {
+@RedisHash("TextMessage")
+public class TextMessage implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
