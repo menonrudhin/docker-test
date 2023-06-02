@@ -21,7 +21,7 @@ public class TextMessage {
     private Timestamp timestamp;
 
     public TextMessage(){
-        // capture the curren timestamp
+        // capture the current timestamp
         this.timestamp = new Timestamp(System.currentTimeMillis());
     }
 
