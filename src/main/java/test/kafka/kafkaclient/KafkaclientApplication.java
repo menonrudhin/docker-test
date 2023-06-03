@@ -31,9 +31,19 @@ public class KafkaclientApplication {
 				.build();
 	}
 
+//	@Bean
+//	JedisConnectionFactory jedisConnectionFactory() {
+//		return new JedisConnectionFactory();
+//	}
+
 	@Bean
 	JedisConnectionFactory jedisConnectionFactory() {
-		return new JedisConnectionFactory();
+		JedisConnectionFactory jedisConFactory
+				= new JedisConnectionFactory();
+		jedisConFactory.setHostName("redis_stack_server");
+		jedisConFactory.setPort(6379);
+		jedisConFactory.afterPropertiesSet();
+		return jedisConFactory;
 	}
 
 	@Bean
