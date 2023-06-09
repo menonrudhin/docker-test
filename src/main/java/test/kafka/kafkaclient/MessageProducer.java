@@ -17,7 +17,7 @@ public class MessageProducer {
 
     public void produce(String text){
         try {
-            ListenableFuture listenableFuture = template.send("topic-1", text);
+            ListenableFuture listenableFuture = template.send("topic1", text);
             listenableFuture.addCallback(new SuccessCallback() {
                 @Override
                 public void onSuccess(Object result) {
