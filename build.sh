@@ -1,1 +1,1 @@
-mvn -DskipTests clean install && docker build --tag kafkaclient .
+mvn -DskipTests clean install && docker build --rm --tag kafkaclient:latest .
