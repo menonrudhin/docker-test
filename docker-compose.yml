@@ -39,7 +39,7 @@ services:
       - "5001:5001"
     environment:
      KAFKA_BROKER_ADDRESS: 'broker:29092'
-     JAVA_TOOL_OPTIONS: '-agentlib:jdwp=transport=dt_socket,address=*:5001,server=y,suspend=y'
+     JAVA_TOOL_OPTIONS: '-agentlib:jdwp=transport=dt_socket,address=*:5001,server=y,suspend=n'
     depends_on:
       - broker
       - redisServer

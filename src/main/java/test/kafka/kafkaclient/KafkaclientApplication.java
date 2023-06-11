@@ -2,14 +2,12 @@ package test.kafka.kafkaclient;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.clients.producer.internals.Sender;
 import org.apache.kafka.common.serialization.IntegerSerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
@@ -33,6 +31,9 @@ public class KafkaclientApplication {
 	@Value("${spring.kafka.bootstrap-servers}")
 	private String kafkaBroker;
 
+	@Value("${inbound.topic}")
+	private String topic;
+
 	public static void main(String[] args) {
 		System.out.println("Inside Main"); // 192.168.0.3:29092
 		SpringApplication.run(KafkaclientApplication.class, args);
@@ -42,7 +43,7 @@ public class KafkaclientApplication {
 	@Bean
 	public NewTopic topic() {
 		System.out.println("Inside NewTopic");
-		return TopicBuilder.name("topic1")
+		return TopicBuilder.name(this.topic)
 				.partitions(10)
 				.replicas(1)
 				.build();

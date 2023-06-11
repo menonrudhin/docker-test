@@ -2,6 +2,7 @@ package test.kafka.kafkaclient;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.jedis.JedisConnection;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
@@ -13,6 +14,7 @@ import test.kafka.controller.TextMessageRepository;
 import java.nio.charset.StandardCharsets;
 
 @Component
+@PropertySource(value="classpath:application.yaml")
 public class MessageConsumer {
 
     @Autowired
@@ -25,9 +27,8 @@ public class MessageConsumer {
         System.out.println("********* MessageConsumer constructor ******");
     }
 
-    @KafkaListener(id="myid" , topics="topic1")
+    @KafkaListener(id="myid" , topics="${inbound.topic}")
     public void listen(ConsumerRecord<String, String> record) {
-
         try(RedisConnection redisConnection = jedisConnectionFactory.getConnection()) {
 
             System.out.println("Record key = " + record.key() + " and value = " + record.value());
