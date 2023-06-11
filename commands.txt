@@ -20,3 +20,6 @@ docker run -d --name redis-stack -p 6379:6379 redis/redis-stack-server:latest
 
 # Curl command to post data, which will be written to db (redis)
 curl -X POST --header Content-Type: application/json -d 'This is my message' http://localhost:9000/sendMessage
+
+# Prune dangling images
+docker rmi -f $(docker images -f "dangling=true" -q)
